@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: If you use this work, please cite it.
+title: "Following plus a little noise: when an AI-agent colony adapts like ants"
+version: 0.1.0
+date-released: "2026-10-14"
+authors:
+  - family-names: Barth
+    given-names: Malte
+license: MIT

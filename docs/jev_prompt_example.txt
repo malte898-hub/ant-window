@@ -1,0 +1,53 @@
+Jev prompt template used in calib-00j / calib-00k
+Key redacted. Fields sent to TypeSafe are only those in the public HTTP API
+(https://docs.typesafe.ai/api.md): model, state, questions[].type/instructions/criteria.
+Returned fields used: model, answers.route.choice, answers.route.probabilities,
+answers.route.confidence. Endpoint: POST https://api.typesafe.ai/v1/systemone
+
+What each of the 7 marks shows
+  Route label only (neutral rt-xxx token). Strongest-first top-7 from the trail.
+  NOT sent: weight, age/tick, trip duration, agent id, free-text note.
+  (Those exist on the host trail. Jev never sees them.)
+
+Host also shuffles the two option keys per call. The shuffle order for this
+tick was not persisted in sqlite; both labels are shown below.
+
+Live example
+  calib-00k  Jev coin 0.10  variant B  TTL 2.5  seed 600  tick 44  agent 5
+  coin_fired = 0 (this call went to Jev, not the host coin)
+  label_short = rt-681   label_long = rt-b1e
+  top7 = 2 short / 5 long
+  chosen = short
+
+Request (Authorization Bearer redacted)
+
+{
+  "model": "jev-latest",
+  "state": "{\"marks_strongest_first\": [\"rt-681\", \"rt-681\", \"rt-b1e\", \"rt-b1e\", \"rt-b1e\", \"rt-b1e\", \"rt-b1e\"]}",
+  "questions": {
+    "route": {
+      "type": "choice",
+      "instructions": "Which route should this ant take next?",
+      "criteria": {
+        "rt-681": "route rt-681",
+        "rt-b1e": "route rt-b1e"
+      }
+    }
+  }
+}
+
+Response (this call)
+
+{
+  "model": "jev-1.13.0",
+  "answers": {
+    "route": {
+      "type": "choice",
+      "choice": "rt-681",
+      "probabilities": {"rt-681": 0.74, "rt-b1e": 0.26}
+    }
+  }
+}
+
+Host then takes argmax of probabilities, then applies the coin overlay
+(this tick: coin did not fire).

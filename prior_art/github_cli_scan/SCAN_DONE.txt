@@ -1,0 +1,7 @@
+queries_run=38
+repo_queries=14 (x2 sorts = 28)
+code_queries=10 ok=10 fail=0
+unique_repos=724
+code_hit_rows=327
+failures=none
+code_search=200

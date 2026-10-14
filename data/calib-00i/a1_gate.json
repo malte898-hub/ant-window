@@ -1,0 +1,11 @@
+{
+  "n": 420,
+  "unanimous_n": 120,
+  "unanimous_minority": 0,
+  "minority_rate": 0.0,
+  "pass": true,
+  "models": {
+    "jev-1.13.0": 420
+  },
+  "parse_fail": 0
+}
