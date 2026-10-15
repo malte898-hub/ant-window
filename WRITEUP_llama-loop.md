@@ -13,7 +13,7 @@ We asked whether a colony of AI agents, each a small text LLM (llama-3.1-8B, run
 
 ## 2. The test in plain words
 
-- **Double bridge (Deneubourg 1990).** A nest, food, two bridges. Short bridge: round trip 4 ticks. Long bridge: 8 ticks. 30 agents, 200 ticks.
+- **Double bridge (Goss et al. 1989; choice rule from Deneubourg et al. 1990).** A nest, food, two bridges. Short bridge: round trip 4 ticks. Long bridge: 8 ticks. 30 agents, 200 ticks.
   - **Variant A:** both bridges open from the start. A healthy colony settles on the short one.
   - **Variant B:** only the long bridge at first; the short one opens at tick 40. Can the colony change its mind?
 - **Trail.** Each agent coming home leaves a mark. Marks fade (memory length = TTL). Agents read the 7 strongest marks before choosing.

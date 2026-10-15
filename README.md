@@ -1,8 +1,15 @@
 # The Ant That Changed Its Mind
 
-Swarms of AI agents that share notes get stuck when the world changes. In a classic ant
-experiment rebuilt with 30 AI agents, the swarm adapted only when old notes faded fast
-enough and about 5% of decisions were made at random.
+> **Read this first: main limitation.** The AI never saw how strong a note was as a number.
+> It saw the 7 strongest notes as a list, strongest first. So it may be following list order
+> (AI models are known to favour what comes first) rather than the trail itself. A run with
+> the list shuffled is in progress. Until it reports, read every result below as: "with
+> notes shown as a list sorted strongest-first".
+
+Swarms of AI agents that share notes get stuck when the world changes. We rebuilt a classic
+ant experiment, the double bridge (Goss et al. 1989), with 30 AI agents. With notes shown as
+a list sorted strongest-first, the swarm adapted only when old notes faded fast enough and
+about 5% of decisions were made at random.
 
 | Test                                  | Runs        | Short memory: found the better path                        | Long memory: stayed stuck |
 | ------------------------------------- | ----------- | ---------------------------------------------------------- | ------------------------- |
@@ -46,3 +53,10 @@ Filed outputs (this snapshot):
 Code: MIT (LICENSE). Docs, plans, data: CC BY 4.0 (LICENSE-docs).
 
 Jev is a product of TypeSafe AI. This project is independent and not affiliated with or endorsed by TypeSafe.
+
+## Corrections
+
+- 2026-10-15: Moved the list-order limitation to the top. Fixed the ant citation: the double
+  bridge with a short and a long branch is Goss et al. 1989; Deneubourg et al. 1990 used two
+  equal branches. Narrowed "about 5%, like ants" to "with notes shown as a sorted list" until
+  the shuffled-list run reports.

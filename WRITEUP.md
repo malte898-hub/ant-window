@@ -1,5 +1,7 @@
 # Following plus a little noise: when an AI-agent colony adapts like ants
 
+> Main limitation: marks were shown as a list sorted strongest-first, so list order and trail strength are not yet separated (§7; a shuffled-list run is in progress).
+
 Swarms project, 2026-10-14 evening, from run files, Claude's independent checks.
 Status: DRAFT v2. Covers calib-00f to calib-00k (minimum dose added 2026-10-14 late evening).
 Companion: `calib-00/WRITEUP_llama-loop.md` (the earlier llama loop).
@@ -18,7 +20,7 @@ Adding exploration from outside fixed it. With a host coin that makes 30% of dec
 - short memory (TTL 2.5) switched to the new route in **12/12** runs;
 - long memory (TTL 3) stayed on the old route in **12/12** runs.
 
-That is the ant result. It holds down to a **5% coin** (10/12 switched, 12/12 stayed; pre-registered, fresh seeds). At 2% it is half-and-half (6/12). The 10% result replicated (11/12).
+That is the ant result. It holds down to a **5% coin** (marks shown sorted strongest-first) (10/12 switched, 12/12 stayed; pre-registered, fresh seeds). At 2% it is half-and-half (6/12). The 10% result replicated (11/12).
 
 **The design rule this suggests:** let AI agents follow the shared memory; supply a small dose of exploration from the system, not from the model; tune how fast the memory fades.
 
@@ -26,7 +28,7 @@ That is the ant result. It holds down to a **5% coin** (10/12 switched, 12/12 st
 
 ## 2. The test
 
-- **World (Deneubourg double bridge).** Nest, food, two routes. Short: round trip 4 ticks. Long: 8 ticks. 30 agents, 200 ticks.
+- **World (double bridge; Goss et al. 1989).** Nest, food, two routes. Short: round trip 4 ticks. Long: 8 ticks. 30 agents, 200 ticks.
   - Variant A: both routes open from the start.
   - Variant B: only the long route until tick 40, then the short one opens. Can the colony change its mind?
 - **Trail.** Each returning agent leaves a mark (weight 1, plus reinforcement shared across the marks it read). Marks fade by exp(−1/TTL) per tick and drop below 0.05. Agents read the 7 strongest marks.
@@ -109,7 +111,7 @@ Literature check run 2026-10-14 (web search, about 15 queries; not exhaustive; p
 
 | Work | What it shows | Overlap with us |
 |---|---|---|
-| Deneubourg et al. 1990; Dorigo & Stützle (ACO, MMAS) | Double bridge; evaporation and minimum trail levels keep ant colonies adaptive | The ant rules and the design idea are textbook |
+| Goss et al. 1989 (double bridge, short vs long branch); Deneubourg et al. 1990 (equal branches, choice rule); Dorigo & Stützle (ACO, MMAS) | Double bridge; evaporation and minimum trail levels keep ant colonies adaptive | The ant rules and the design idea are textbook |
 | Krishnamurthy et al. 2024 (NeurIPS) | Single LLMs fail to explore in bandit tasks without external help | LLMs under-explore: known |
 | Choi et al. 2026 (arXiv 2607.11250, "Multi-Agent LLMs Fail to Explore Each Other") | LLM agents commit early to one peer; prompting cannot fix it; an algorithmic bandit layer (MACE) can | Closest in spirit: host-side exploration fixes LLM commitment. Peer selection, no trail, no forgetting, no ant control |
 | Jimenez-Romero, Yegenoglu & Blum 2025 (arXiv 2503.03800) | LLM-driven ants with pheromones in NetLogo; exploration poor until a "random" action was added; LLM+rule hybrids did well | Closest setup: LLM ants with pheromones. No route switch, no evaporation test, no dose |
@@ -123,7 +125,7 @@ Literature check run 2026-10-14 (web search, about 15 queries; not exhaustive; p
 1. The ant memory boundary (TTL 2.5 switches, TTL 3 stays) reproduced in an LLM-agent colony, against a live ant control, and shown to depend on externally supplied exploration.
 2. Two opposite failures of LLM agents measured in the same trail world: too noisy and wrong (llama), deterministic and frozen (Jev).
 3. Method finding: an LLM's stated probabilities are not its choice rate (Jev: states 2%, does 0%). Simulators built on stated confidence mispredict colony behaviour.
-4. Dose: about 5% outside exploration is enough; at 2% it is a coin toss. A one-parameter "first explorer" rule predicts the dose curve.
+4. Dose: about 5% outside exploration is enough; at 2% it is a coin toss. A one-parameter "first explorer" rule predicts the dose curve. With marks shown sorted strongest-first; not yet tested with a shuffled list.
 5. Mechanism: the memory boundary acts through the agents' limited reading window (top 7 marks); the LLM's own response to mixed trails is a threshold recruitment curve.
 
 **Not new:** that LLMs under-explore; that random exploration or evaporation keeps swarms adaptive; that LLM agents herd.
@@ -167,6 +169,8 @@ Files: plans `BUILD_PLAN_v3.1.1_live-jev.md`, `BUILD_PLAN_v4.0.1_noise-bracket.m
 
 ## Sources
 
+- Goss, Aron, Deneubourg, Pasteels (1989). Self-organized shortcuts in the Argentine ant. Naturwissenschaften 76:579–581. https://doi.org/10.1007/BF00462870
+- Deneubourg, Aron, Goss, Pasteels (1990). The self-organizing exploratory pattern of the Argentine ant. Journal of Insect Behavior 3:159–168. https://doi.org/10.1007/BF01417909
 - Choi, Li, Li, Wang, Li (2026). Multi-Agent LLMs Fail to Explore Each Other. https://arxiv.org/html/2607.11250
 - Jimenez-Romero, Yegenoglu, Blum (2025). Multi-Agent Systems Powered by Large Language Models: Applications in Swarm Intelligence. https://arxiv.org/abs/2503.03800
 - Krishnamurthy et al. (2024). Can Large Language Models Explore In-Context? https://arxiv.org/html/2403.15371v3

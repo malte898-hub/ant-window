@@ -8,11 +8,11 @@ Oct 15, 2026 · Malte Barth
 
 More and more work is done by swarms of AI agents that share notes, like a team sharing a whiteboard. A research loop run from a single Mac Studio asked a simple question: when the world changes, can such a swarm change its mind?
 
-The test is a famous ant experiment from 1990. Ants find food along a long path. Later a shorter path opens. Real ants switch to the shorter path, but only if their old scent trails fade quickly. The project ran a swarm of 30 AI agents leaving notes instead of scent, with simulated ants alongside as a reference.
+The test is a famous ant experiment, the "double bridge" (Goss et al. 1989). Ants find food along a long path. Later a shorter path opens. Models of ant trails built on this experiment predict that ants switch to the shorter path only if old scent fades quickly. The project ran a swarm of 30 AI agents leaving notes instead of scent, with simulated ants alongside as a reference.
 
 Two AI models failed in opposite ways. One was too random: it mostly picked whichever option was listed first and ignored the notes. The other was too obedient: it always followed the crowd, so the swarm never tried the new path, even when it was twice as fast.
 
-Then the team added one thing from outside: a coin. In 5% of decisions the coin chose instead of the AI. With that, the AI agent swarm behaved like ants. When notes faded quickly, the swarm found the better path in 10 of 12 runs. When notes lasted longer, it stayed stuck in 12 of 12. With the coin at 2%, it was a toss-up.
+Then the team added one thing from outside: a coin. In 5% of decisions the coin chose instead of the AI. With that, the AI agent swarm behaved like the simulated ants. One caveat: the AI saw the notes as a list sorted strongest-first, so it may partly be following list order; a shuffled-list test is running. When notes faded quickly, the swarm found the better path in 10 of 12 runs. When notes lasted longer, it stayed stuck in 12 of 12. With the coin at 2%, it was a toss-up.
 
 "The AI did not need to be smarter," said Malte Barth, who runs the project. "It needed old notes to fade and a small push to try something new. Without the push, the better path was never even on the board."
 
@@ -24,7 +24,7 @@ Every experiment was planned and written down before it ran, checked independent
 
 ## Questions and answers
 
-**What did you find, in one sentence?** A swarm of AI agents sharing notes can adapt to change like an ant colony, but only if old notes fade and a small share of decisions (about 5%) is made at random.
+**What did you find, in one sentence?** A swarm of AI agents sharing notes can adapt to change like an ant colony, but only if old notes fade and a small share of decisions (about 5%) is made at random, at least when the notes are shown as a list sorted strongest-first.
 
 **Why does this matter outside a lab?** Organisations increasingly run swarms of AI agents that share memory: notes, task boards, knowledge bases. Our result suggests these teams can quietly lock into an old habit when the world changes. Two cheap settings prevent it: let memory fade, and add a little randomness.
 
@@ -32,7 +32,7 @@ Every experiment was planned and written down before it ran, checked independent
 
 **Why not just make the AI itself more random?** The random model we tested was random in the wrong way: it picked whatever was listed first. A coin added by the system is clean, cheap and easy to control. The AI does the following; the coin does the exploring.
 
-**What does this not show?** It does not show that AI agents think like ants. It does not show that this replaces a manager agent in a real business system. That test has not been run. And it is one simple world: two paths, one AI model, 30 agents, 12 runs per setting.
+**What does this not show?** It does not show that AI agents think like ants. It does not yet separate following the trail from following list order: the AI always saw the notes strongest-first. A test with the list shuffled is running. It does not show that this replaces a manager agent in a real business system. That test has not been run. And it is one simple world: two paths, one AI model, 30 agents, 12 runs per setting.
 
 **How sure are you?** Fairly sure about the main pattern: it held in every planned experiment with the coin, the ant reference passed every time, and an independent check rebuilt every result from the raw data. Less sure about exact numbers: with 12 runs, "10 of 12" could be 7 or 12 on another day.
 
@@ -40,7 +40,7 @@ Every experiment was planned and written down before it ran, checked independent
 
 ## The results at a glance
 
-With 5% or more random decisions, short memory found the better path and long memory stayed stuck, every time we tested it.
+With 5% or more random decisions (notes shown sorted strongest-first), short memory found the better path and long memory stayed stuck, every time we tested it.
 
 | Test                                  | Runs        | Short memory: found the better path                        | Long memory: stayed stuck |
 | ------------------------------------- | ----------- | ---------------------------------------------------------- | ------------------------- |
