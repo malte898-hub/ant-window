@@ -14,9 +14,9 @@ enough and about 5% of decisions were made at random.
 | Second model + 2% coin                | 24          | 6 of 12 (a toss-up)                                        | 12 of 12                  |
 | Simulated ants (reference)            | every batch | Every time                                                 | Every time                |
 
-- Plain-language summary: SUMMARY.md
-- Full technical write-up: WRITEUP.md (and WRITEUP_llama-loop.md)
-- Reproduce the verdicts: see "Reproduce" below
+- Plain-language summary: [SUMMARY.md](SUMMARY.md)
+- Full technical write-up: [WRITEUP.md](WRITEUP.md) (and [WRITEUP_llama-loop.md](WRITEUP_llama-loop.md))
+- Reproduce the verdicts: see [Reproduce](#reproduce) below
 
 ## Reproduce
 
@@ -39,7 +39,7 @@ Filed outputs (this snapshot):
 
 ## Repository map
 
-plans/ · checkers/ · src/ · data/ · prior_art/ · docs/
+[plans/](plans) · [checkers/](checkers) · [src/](src) · [data/](data) · [prior_art/](prior_art) · [docs/](docs)
 
 ## Licences
 
