@@ -1,6 +1,6 @@
 # Following plus a little noise: when an AI-agent colony adapts like ants
 
-Swarms project · draft by Claude, 2026-10-14 evening, from run files, mu's reports and Claude's independent checks.
+Swarms project, 2026-10-14 evening, from run files, Claude's independent checks.
 Status: DRAFT v2. Covers calib-00f to calib-00k (minimum dose added 2026-10-14 late evening).
 Companion: `calib-00/WRITEUP_llama-loop.md` (the earlier llama loop).
 
