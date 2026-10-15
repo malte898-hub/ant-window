@@ -2,8 +2,8 @@
 
 > **Read this first: main limitation.** The AI never saw how strong a note was as a number.
 > It saw the 7 strongest notes as a list, strongest first. So it may be following list order
-> (AI models are known to favour what comes first) rather than the trail itself. A run with
-> the list shuffled is in progress. Until it reports, read every result below as: "with
+> (AI models are known to favour what comes first) rather than the trail itself. A pre-registered
+> test with the list shuffled is queued. Until it reports, read every result below as: "with"
 > notes shown as a list sorted strongest-first".
 
 Swarms of AI agents that share notes get stuck when the world changes. We rebuilt a classic
@@ -60,3 +60,4 @@ Jev is a product of TypeSafe AI. This project is independent and not affiliated 
   bridge with a short and a long branch is Goss et al. 1989; Deneubourg et al. 1990 used two
   equal branches. Narrowed "about 5%, like ants" to "with notes shown as a sorted list" until
   the shuffled-list run reports.
+- 2026-10-15 (later): "A run with the list shuffled is in progress" was premature; the test was planned, not running. Now reads "queued".

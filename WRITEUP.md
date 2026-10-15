@@ -1,6 +1,6 @@
 # Following plus a little noise: when an AI-agent colony adapts like ants
 
-> Main limitation: marks were shown as a list sorted strongest-first, so list order and trail strength are not yet separated (§7; a shuffled-list run is in progress).
+> Main limitation: marks were shown as a list sorted strongest-first, so list order and trail strength are not yet separated (§7; a pre-registered shuffled-list run is queued).
 
 Swarms project, 2026-10-14 evening, from run files, Claude's independent checks.
 Status: DRAFT v2. Covers calib-00f to calib-00k (minimum dose added 2026-10-14 late evening).
