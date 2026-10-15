@@ -1,4 +1,4 @@
-# The Ant That Changed Its Mind for AI agent swarms
+# The Ant That Changed Its Mind For AI Agent Swarms
 
 Oct 15, 2026 · Malte Barth
 
