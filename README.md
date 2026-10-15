@@ -1,22 +1,24 @@
-# ant-window
+# The Ant That Changed Its Mind
 
-Jev is a product of TypeSafe AI. This project is independent and not affiliated with or endorsed by TypeSafe.
+Swarms of AI agents that share notes get stuck when the world changes. In a classic ant
+experiment rebuilt with 30 AI agents, the swarm adapted only when old notes faded fast
+enough and about 5% of decisions were made at random.
 
-## Question
+| Test                                  | Runs        | Short memory: found the better path                        | Long memory: stayed stuck |
+| ------------------------------------- | ----------- | ---------------------------------------------------------- | ------------------------- |
+| Small AI model on its own             | 3 nights    | No clear pattern; it mostly picked the first-listed option | No clear pattern          |
+| Second AI model on its own            | 72          | 0 of 24                                                    | 24 of 24                  |
+| Second model + 30% coin               | 36          | 12 of 12                                                   | 12 of 12                  |
+| Second model + 10% coin (two batches) | 48          | 21 of 24                                                   | 24 of 24                  |
+| Second model + 5% coin                | 24          | 10 of 12                                                   | 12 of 12                  |
+| Second model + 2% coin                | 24          | 6 of 12 (a toss-up)                                        | 12 of 12                  |
+| Simulated ants (reference)            | every batch | Every time                                                 | Every time                |
 
-Can a colony of AI agents on a fading shared trail switch to a better new route when memory is short, and stay locked when memory is long (Deneubourg double bridge)?
+- Plain-language summary: SUMMARY.md
+- Full technical write-up: WRITEUP.md (and WRITEUP_llama-loop.md)
+- Reproduce the verdicts: see "Reproduce" below
 
-## Result (host coin on argmax Jev; not a Jev temperature)
-
-| id | finding |
-|---|---|
-| 00g | Jev coin 0: no switch. Simulator REFUTED 0/5. |
-| 00j | coin 0.30: 12/12 switch, 12/12 lock (BOUNDARY RESTORED). coin 0.10: 10/12, AUC 0.882 (dose not confirmed). |
-| 00k | minimum splitting dose = 0.05. Explorer model HOLDS. 0.02 PARTIAL 6/12. |
-
-See WRITEUP.md. Llama loop: WRITEUP_llama-loop.md.
-
-## Reproduce checkers
+## Reproduce
 
 ```
 python3 -I checkers/verify_calib00g.py data/calib-00g/grid.csv
@@ -35,14 +37,12 @@ Filed outputs (this snapshot):
 00k  minimum splitting dose = 0.05 · explorer model: MODEL HOLDS
      0.02 PARTIAL 6/12 · 0.05 SPLIT 10/12 · 0.10 SPLIT 11/12
 
-## Jev prompt
+## Repository map
 
-docs/jev_prompt_example.txt — route labels only in the 7 marks. No weights, ticks, duration, agent id, or note text.
+plans/ · checkers/ · src/ · data/ · prior_art/ · docs/
 
 ## Licences
 
 Code: MIT (LICENSE). Docs, plans, data: CC BY 4.0 (LICENSE-docs).
 
-## Runners
-
-src/ overnight_00g/00j/00k.py. Set API_KEY in the environment for Jev HTTP. No emulator of Jev is in this tree.
+Jev is a product of TypeSafe AI. This project is independent and not affiliated with or endorsed by TypeSafe.
