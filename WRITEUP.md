@@ -85,7 +85,7 @@ Each decision: with probability ε the host's random generator picks a route at 
 - **Short memory:** old long marks fade fast enough for the fresh short mark to get into view. Then Jev itself recruits: its own picks of the short route were 13% at 1 of 7 short marks, 46% at 2 of 7, 98% at 3 of 7, 100% at 4+ of 7. That is a threshold, positive-feedback response, like ants. It is not a pure majority vote: Jev switches at about 2 of 7.
 - So the memory boundary works through what fits in the 7-mark window, and the coin only has to get one mark in.
 - A simple rule, P(switch) = 1 − (1 − coin/2)^W, fits all six live points with a window W ≈ 52 decisions.
-- Open: what each mark shows Jev (count only, or also weight, age or trip time). If marks carry trip time or freshness, Jev may be preferring the faster route for that reason. To be confirmed with mu before publication.
+- What Jev sees (confirmed from the run code, `docs/jev_prompt_example.txt`): the 7 marks as route labels only, listed strongest first. No weight, age, trip time, agent id or note text; the two route options are shuffled per call. So there is no trip-time leak. The only strength cue is list order: fresh short marks sit at the top, and Jev's early pull toward them (e.g. 2 short of 7 listed first → stated 0.74 short, picked short) reads like a primacy effect on an ordered list. That is still trail information (order = strength), the same signal ants use, but delivered through position rather than numbers.
 
 ### 5.4 Minimum dose (calib-00k)
 Pre-registered (v4.2), seeds 600–611, ants 0.938 / 0.927 / 0.113, 0 invalid.
@@ -135,7 +135,8 @@ Literature check run 2026-10-14 (web search, about 15 queries; not exhaustive; p
 - One world, two routes, one deterministic model (Jev) for the positive result.
 - The coin is external, so the result is about system design, not model behaviour.
 - llama was tested with bare marks in 00i; its note-reading under low temperature is untested.
-- What Jev sees per mark must be confirmed (possible trip-time or freshness cue).
+- Jev reads mark strength only through list order (primacy). A version that shuffles the 7 marks would separate trail strength from position.
+- Calls used the model alias `jev-latest`; every response reported jev-1.13.0. A future alias change could change results.
 - 12 runs per setting: counts like 10/12 have wide uncertainty.
 - The literature search was a web search, not a systematic review.
 

@@ -1,7 +1,5 @@
 # ant-window
 
-Private draft. Not affiliated with TypeSafe.
-
 Jev is a product of TypeSafe AI. This project is independent and not affiliated with or endorsed by TypeSafe.
 
 ## Question
